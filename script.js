@@ -27,3 +27,9 @@ function fibsRec (n) {
 };
 
 console.log(fibsRec(8));
+
+// Building Merge Sort Function
+
+function mergeSort(array) {
+
+};
