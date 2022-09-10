@@ -14,7 +14,7 @@ function fibs(n) {
 return myArr;
 }
 
-console.log(fibs(8));
+// console.log(fibs(8));
 
 // Fibonacci Sequence using Recursion
 
@@ -26,10 +26,53 @@ function fibsRec (n) {
    
 };
 
-console.log(fibsRec(8));
+// console.log(fibsRec(8));
 
 // Building Merge Sort Function
+// on input of n elements
+// if n < 2
+// return
+// else 
+// sort left half of elements
+// sort right half of elements
+// merge sorted halves
 
-function mergeSort(array) {
+const merge = (leftArr, rightArr) => {
+    const output = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+    
+    while (leftIndex < leftArr.length && rightIndex < rightArr.length) {
+        const leftEl = leftArr[leftIndex];
+        const rightEl = rightArr[rightIndex];
 
+        if (leftEl < rightEl) {
+            output.push(leftEl);
+            leftIndex++;
+        } else {
+            output.push(rightEl);
+            rightIndex++;
+        }
+    }
+    return [...output, ...leftArr.slice(leftIndex), ...rightArr.slice(rightIndex)];
 };
+
+const mergeSort = array => {
+    if (array.length < 2) {
+        return array;
+    } 
+
+    // split in half
+    const m = Math.floor(array.length / 2);
+    const leftArr = array.slice(0, m);
+    const rightArr = array.slice(m);
+    
+    // merge sorted sub-arrays
+    return merge(
+        mergeSort(leftArr),
+        mergeSort(rightArr)
+    );
+};
+
+
+console.log(mergeSort([9, 6, 5, 1, 2, 0]));
